@@ -1,4 +1,3 @@
-
 import React, { Fragment } from 'react'
 
 import { Category, Product } from '../../../payload/payload-types'

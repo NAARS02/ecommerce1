@@ -68,5 +68,3 @@ const Filters = ({ categories }: { categories: Category[] }) => {
 }
 
 export default Filters
-
-

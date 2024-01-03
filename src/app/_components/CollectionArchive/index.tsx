@@ -38,10 +38,7 @@ export type Props = {
 }
 
 export const CollectionArchive: React.FC<Props> = props => {
-
-
-  
-  const { categoryFilters, sort} = useFilter();
+  const { categoryFilters, sort } = useFilter()
   const {
     className,
     relationTo,
@@ -154,37 +151,30 @@ export const CollectionArchive: React.FC<Props> = props => {
       {!isLoading && error && <div>{error}</div>}
       <Fragment>
         {showPageRange !== false && (
-          
-            <div className={classes.pageRange}>
-              <PageRange
-                totalDocs={results.totalDocs}
-                currentPage={results.page}
-                collection={relationTo}
-                limit={limit}
-              />
-            </div>
-         
-        )}
-       
-          <div className={classes.grid}>
-            {results.docs?.map((result, index) => {
-              return (
-                
-                  <Card relationTo="products" doc={result} showCategories />
-                
-              )
-            })}
-          </div>
-
-          {results.totalPages > 1 && (
-            <Pagination
-              className={classes.pagination}
-              page={results.page}
-              totalPages={results.totalPages}
-              onClick={setPage}
+          <div className={classes.pageRange}>
+            <PageRange
+              totalDocs={results.totalDocs}
+              currentPage={results.page}
+              collection={relationTo}
+              limit={limit}
             />
-          )}
-        
+          </div>
+        )}
+
+        <div className={classes.grid}>
+          {results.docs?.map((result, index) => {
+            return <Card relationTo="products" doc={result} showCategories />
+          })}
+        </div>
+
+        {results.totalPages > 1 && (
+          <Pagination
+            className={classes.pagination}
+            page={results.page}
+            totalPages={results.totalPages}
+            onClick={setPage}
+          />
+        )}
       </Fragment>
     </div>
   )

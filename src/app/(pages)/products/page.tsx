@@ -11,31 +11,27 @@ import { fetchDocs } from '../../_api/fetchDocs'
 import { HR } from '../../_components/HR'
 
 const Products = async () => {
+  const { isEnabled: isDraftMode } = draftMode()
 
-    const{ isEnabled: isDraftMode } = draftMode();
-  
-  let page: Page | null = null;
-  let categories: Category[] | null=null;
-  try{
-
-    page= await fetchDoc<Page>({
-        collection: 'pages',
-        slug: 'products',
-        draft: isDraftMode
-
+  let page: Page | null = null
+  let categories: Category[] | null = null
+  try {
+    page = await fetchDoc<Page>({
+      collection: 'pages',
+      slug: 'products',
+      draft: isDraftMode,
     })
     categories = await fetchDocs<Category>('categories')
-  }catch(error){
-    console.log(error);
+  } catch (error) {
+    console.log(error)
   }
-    return (
-
+  return (
     <div className={classes.container}>
-        <Gutter className={classes.products}>
-            <Filters categories={categories} />
-            <Blocks blocks={page.layout} disableTopPadding={true} />
-        </Gutter>
-        <HR />
+      <Gutter className={classes.products}>
+        <Filters categories={categories} />
+        <Blocks blocks={page.layout} disableTopPadding={true} />
+      </Gutter>
+      <HR />
     </div>
   )
 }
